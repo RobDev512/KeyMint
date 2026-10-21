@@ -3,7 +3,7 @@
 ## Estado actual
 
 **Versión vigente:** v1.0.0  
-**Estado general:** Estable / preparada para publicación  
+**Estado general:** Estable / publicada  
 **Plataforma principal:** Windows 64-bit  
 **Port Android:** Experimental
 
@@ -11,16 +11,16 @@
 > El alcance puede cambiar conforme avance el desarrollo real.
 
 > Nota histórica: PasswGen existía antes de contar con un repositorio oficial
-> en GitHub. La versión v1.0.0 documenta la base estable actual y será la primera
-> versión formalizada dentro del repositorio.
+> en GitHub. La versión v1.0.0 formaliza esa base estable y constituye la
+> primera release pública documentada del proyecto.
 
 ---
 
 ## v1.0.0 — Base estable
 
-**Estado:** Aplicada
+**Estado:** Aplicada / publicada
 
-Primera versión formalizada del proyecto.
+Primera versión formalizada y publicada del proyecto.
 
 ### Generación
 
@@ -44,6 +44,7 @@ Primera versión formalizada del proyecto.
 - Instalador generado con Inno Setup.
 - Instalación en Windows de 64 bits.
 - Versión interna `APP_VERSION = "1.0.0"`.
+- Release distribuida desde GitHub.
 
 ### Proyecto
 
@@ -52,6 +53,8 @@ Primera versión formalizada del proyecto.
 - Port Android experimental separado en `android/`.
 - Dependencias declaradas en `requirements.txt`.
 - Artefactos de compilación excluidos mediante `.gitignore`.
+- Repositorio público oficial en GitHub.
+- Licencia MIT.
 
 ---
 

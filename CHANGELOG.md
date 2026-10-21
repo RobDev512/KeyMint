@@ -8,11 +8,7 @@ El formato sigue una organización por versiones y distingue entre cambios publi
 
 ## [Unreleased]
 
-### Pendiente
-
-- Primera publicación del repositorio en GitHub.
-- Creación de la Release pública de v1.0.0.
-- Incorporación de documentación y capturas del proyecto.
+Sin cambios documentados todavía.
 
 ---
 
@@ -20,7 +16,7 @@ El formato sigue una organización por versiones y distingue entre cambios publi
 
 ### Estado
 
-Base estable preparada para su primera publicación pública en GitHub.
+Primera versión pública estable y primera release formal de PasswGen en GitHub.
 
 ### Añadido
 
@@ -35,6 +31,8 @@ Base estable preparada para su primera publicación pública en GitHub.
 - Instalador de Windows mediante Inno Setup.
 - Instalación nativa en Windows de 64 bits.
 - Identificación interna mediante `APP_NAME` y `APP_VERSION`.
+- Documentación inicial mediante `README.md`, `CHANGELOG.md` y `ROADMAP.md`.
+- Licencia MIT.
 
 ### Seguridad
 
@@ -54,7 +52,8 @@ Base estable preparada para su primera publicación pública en GitHub.
 - Incorporación de `requirements.txt`.
 - Eliminación de artefactos de compilación y archivos de prácticas ajenos al proyecto.
 - Normalización de la versión a `1.0.0`.
+- Creación del repositorio público oficial `RobDev512/PasswGen`.
 
 ### Nota histórica
 
-PasswGen existía antes de su incorporación a GitHub. La versión v1.0.0 representa la base estable actual preparada para convertirse en la primera versión documentada y publicada desde el repositorio oficial.
+PasswGen existía antes de su incorporación a GitHub. La versión v1.0.0 formaliza la base estable del proyecto y constituye su primera versión pública documentada desde el repositorio oficial.

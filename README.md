@@ -8,7 +8,7 @@ Generador de contraseñas de escritorio desarrollado en Python, orientado a crea
 
 ## Estado
 
-**Estable / preparada para su primera publicación en GitHub**
+**Estable / publicada**
 
 ## Características
 
@@ -31,7 +31,19 @@ La versión v1.0.0 utiliza el módulo `secrets` de Python para la selección ale
 
 La versión actual no garantiza que cada contraseña contenga obligatoriamente al menos un carácter de cada categoría. Esa opción forma parte del roadmap futuro.
 
-## Requisitos para ejecutar desde el código fuente
+## Descargar
+
+La distribución oficial de PasswGen v1.0.0 está orientada a **Windows de 64 bits**.
+
+[Descargar PasswGen Setup v1.0.0](https://github.com/RobDev512/PasswGen/releases/download/v1.0.0/PasswGen_Setup_v1.0.0.exe)
+
+También puedes consultar la release completa:
+
+https://github.com/RobDev512/PasswGen/releases/tag/v1.0.0
+
+## Ejecutar desde el código fuente
+
+Requisitos:
 
 - Python 3.11 o compatible.
 - Pillow.
@@ -85,8 +97,6 @@ La salida esperada es:
 dist\installer\PasswGen_Setup_v1.0.0.exe
 ```
 
-La distribución oficial de la versión v1.0.0 está orientada a **Windows de 64 bits**.
-
 ## Estructura del proyecto
 
 ```text
@@ -107,12 +117,13 @@ PasswGen/
 │   └── ver.png
 ├── .gitignore
 ├── CHANGELOG.md
+├── LICENSE
 ├── README.md
 ├── ROADMAP.md
 └── requirements.txt
 ```
 
-Las carpetas `build/`, `dist/` y los archivos `__pycache__/` son artefactos generados localmente y no forman parte del código fuente versionado.
+Las carpetas `build/`, `dist/`, `Output/` y los archivos `__pycache__/` son artefactos generados localmente y no forman parte del código fuente versionado.
 
 ## Android
 
@@ -135,6 +146,10 @@ Los cambios publicados y la evolución de las versiones se documentan en:
 ```text
 CHANGELOG.md
 ```
+
+## Licencia
+
+PasswGen se distribuye bajo la licencia MIT. Consulta `LICENSE` para más información.
 
 ## Autor
 
