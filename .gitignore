@@ -1,0 +1,60 @@
+# ============================================
+# PasswGen - Archivos ignorados por Git
+# ============================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Compilaciones y distribución
+build/
+dist/
+*.exe
+*.msi
+*.msix
+*.manifest
+
+# Salida de Inno Setup
+Output/
+output/
+
+# Android / Buildozer
+android/.buildozer/
+android/bin/
+android/.gradle/
+*.apk
+*.aab
+
+# Editores e IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Windows / macOS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs y temporales
+*.log
+*.tmp
+*.bak
+
+# Archivos comprimidos y respaldos
+*.zip
+*.7z
+*.rar
+
+# Variables de entorno locales
+.env
+.env.*
+!.env.example
