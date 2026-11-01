@@ -10,9 +10,7 @@
 
 [Setup]
 
-; Conservado para mantener compatibilidad con instalaciones
-; históricas de PasswGen v1.0.0.
-AppId=Generador de Contraseñas Seguras
+AppId=KeyMint_RobDev512
 
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -51,3 +49,4 @@ Name: "{autodesktop}\KeyMint"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktop
 [Run]
 
 Filename: "{app}\{#MyAppExeName}"; Description: "Ejecutar {#MyAppName}"; Flags: nowait postinstall skipifsilent
+
