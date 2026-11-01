@@ -1,45 +1,65 @@
-# PasswGen
+# KeyMint
 
-Generador de contraseñas de escritorio desarrollado en Python, orientado a crear contraseñas aleatorias de forma local y sencilla.
+**KeyMint** es un generador seguro de contraseñas de escritorio desarrollado en Python.
+
+El proyecto nació como **PasswGen**. La versión **v1.0.0** fue su primera release pública estable; a partir del ciclo **v1.1.0** adopta oficialmente el nombre, identidad visual y estructura de **KeyMint**.
 
 ## Versión actual
 
-**v1.0.0**
+**v1.1.0-dev**
 
 ## Estado
 
-**Estable / publicada**
+**En desarrollo**
 
-## Características
+La última versión pública estable continúa siendo **PasswGen v1.0.0** mientras se completa la transición a KeyMint.
+
+## Características actuales
 
 - Generación local de contraseñas.
 - Longitud configurable.
-- Uso de `secrets` para la selección aleatoria de caracteres.
-- Letras, números y símbolos como base del conjunto de generación.
+- Selección aleatoria basada en `secrets`.
+- Letras, números y símbolos como conjunto de generación.
 - Mostrar u ocultar la contraseña generada.
 - Copiar la contraseña al portapapeles.
-- Interfaz gráfica con Tkinter.
-- Recursos visuales propios.
-- Detección de tema del sistema y soporte de apariencia clara/oscura.
-- Instalador para Windows de 64 bits.
+- Interfaz gráfica de escritorio con Tkinter.
+- Detección del tema del sistema.
+- Apariencia clara y oscura.
+- Identidad visual propia de KeyMint.
+- Ejecutable para Windows mediante PyInstaller.
+- Instalador para Windows mediante Inno Setup.
 
 ## Seguridad
 
-PasswGen genera contraseñas localmente y no necesita enviar datos a servicios externos.
+KeyMint genera las contraseñas localmente y no necesita enviar datos a servicios externos.
 
-La versión v1.0.0 utiliza el módulo `secrets` de Python para la selección aleatoria de caracteres, en lugar de un generador pensado para simulación o uso general.
+La selección aleatoria utiliza el módulo `secrets` de Python.
 
-La versión actual no garantiza que cada contraseña contenga obligatoriamente al menos un carácter de cada categoría. Esa opción forma parte del roadmap futuro.
+La versión actual todavía no garantiza obligatoriamente al menos un carácter de cada categoría habilitada. Ese control forma parte de la evolución planificada del generador.
 
-## Descargar
+## Historial de identidad
 
-La distribución oficial de PasswGen v1.0.0 está orientada a **Windows de 64 bits**.
+### PasswGen v1.0.0
 
-[Descargar PasswGen Setup v1.0.0](https://github.com/RobDev512/PasswGen/releases/download/v1.0.0/PasswGen_Setup_v1.0.0.exe)
+PasswGen fue el nombre original del proyecto y corresponde a su primera versión pública estable.
 
-También puedes consultar la release completa:
+La release histórica continúa disponible en:
 
 https://github.com/RobDev512/PasswGen/releases/tag/v1.0.0
+
+### KeyMint v1.1.0+
+
+KeyMint es la identidad actual del proyecto.
+
+La transición incluye:
+
+- nuevo nombre;
+- nueva identidad visual;
+- reorganización de recursos;
+- nuevo ejecutable `KeyMint.exe`;
+- nuevo empaquetado;
+- renovación de la interfaz;
+- limpieza de componentes experimentales obsoletos.
 
 ## Ejecutar desde el código fuente
 
@@ -49,107 +69,130 @@ Requisitos:
 - Pillow.
 - pyperclip.
 
-Instala las dependencias con:
+Crear un entorno virtual local:
 
 ```powershell
-python -m pip install -r ".\requirements.txt"
+python -m venv .venv
 ```
 
-Ejecuta la aplicación con:
+Instalar dependencias:
 
 ```powershell
-python ".\src\GenPasswords.py"
+& ".\.venv\Scripts\python.exe" -m pip install -r ".\requirements.txt"
 ```
 
-Para comprobar la sintaxis:
+Ejecutar KeyMint:
 
 ```powershell
-python -m py_compile ".\src\GenPasswords.py"
+& ".\.venv\Scripts\python.exe" ".\KeyMint.py"
+```
+
+Comprobar sintaxis:
+
+```powershell
+& ".\.venv\Scripts\python.exe" -m py_compile ".\KeyMint.py"
 ```
 
 ## Compilación para Windows
 
-El proyecto utiliza PyInstaller para generar el ejecutable.
-
-Desde la raíz del proyecto:
+PyInstaller se instala en el entorno virtual de desarrollo:
 
 ```powershell
-python -m PyInstaller --clean --noconfirm ".\packaging\windows\GenPasswords.spec"
+& ".\.venv\Scripts\python.exe" -m pip install pyinstaller
 ```
 
-El ejecutable se genera en:
+Construir el ejecutable:
+
+```powershell
+& ".\.venv\Scripts\python.exe" -m PyInstaller --clean ".\packaging\windows\KeyMint.spec"
+```
+
+Salida:
 
 ```text
-dist\GenPasswords.exe
+dist\KeyMint.exe
 ```
 
 ## Instalador
 
-El instalador de Windows se construye con Inno Setup a partir de:
+El instalador de Windows se define en:
 
 ```text
-packaging\windows\GenPasswords.iss
+packaging\windows\KeyMint.iss
 ```
 
-La salida esperada es:
+Durante el desarrollo de v1.1.0 la salida prevista es:
 
 ```text
-dist\installer\PasswGen_Setup_v1.0.0.exe
+dist\installer\KeyMint_Setup_v1.1.0-dev.exe
 ```
 
 ## Estructura del proyecto
 
 ```text
-PasswGen/
-├── android/
-│   ├── buildozer.spec
-│   └── GCSAndroidPort.py
+KeyMint/
+├── assets/
+│   ├── branding/
+│   │   ├── KeyMintIcon.ico
+│   │   ├── KeyMintIcon.png
+│   │   ├── KeyMintLogo.png
+│   │   ├── KeyMintLogoHorizontal.png
+│   │   ├── KeyMintLogoTransparent.png
+│   │   └── KeyMintMono.png
+│   └── icons/
+│       ├── eye-closed.png
+│       └── eye-open.png
 ├── docs/
+│   ├── BRANDING.md
+│   ├── CHANGELOG.md
+│   ├── ROADMAP.md
 │   └── images/
 ├── packaging/
 │   └── windows/
-│       ├── GenPasswords.iss
-│       └── GenPasswords.spec
-├── src/
-│   ├── GenPasswords.py
-│   ├── Logo.ico
-│   ├── ojo.png
-│   └── ver.png
+│       ├── KeyMint.iss
+│       └── KeyMint.spec
 ├── .gitignore
-├── CHANGELOG.md
+├── KeyMint.py
 ├── LICENSE
 ├── README.md
-├── ROADMAP.md
 └── requirements.txt
 ```
 
-Las carpetas `build/`, `dist/`, `Output/` y los archivos `__pycache__/` son artefactos generados localmente y no forman parte del código fuente versionado.
+Las carpetas `.venv/`, `build/`, `dist/`, `Output/` y `__pycache__/` son artefactos locales y no forman parte del código fuente versionado.
 
-## Android
+## Identidad visual
 
-El directorio `android/` conserva un port experimental basado en Kivy/Buildozer.
+La identidad de KeyMint se documenta en:
 
-Actualmente no forma parte de la distribución oficial de PasswGen y se mantiene como trabajo experimental para una posible revisión futura.
+```text
+docs/BRANDING.md
+```
 
 ## Roadmap
 
 La planificación por versiones se encuentra en:
 
 ```text
-ROADMAP.md
+docs/ROADMAP.md
 ```
 
 ## Historial de cambios
 
-Los cambios publicados y la evolución de las versiones se documentan en:
+El historial del proyecto se encuentra en:
 
 ```text
-CHANGELOG.md
+docs/CHANGELOG.md
 ```
+
+## Plataformas
+
+La distribución oficial continúa enfocada en **Windows de 64 bits**.
+
+El antiguo port experimental Android de PasswGen fue retirado durante la transición a KeyMint. El soporte móvil se retomará únicamente cuando exista una implementación mantenida y probada.
 
 ## Licencia
 
-PasswGen se distribuye bajo la licencia MIT. Consulta `LICENSE` para más información.
+KeyMint se distribuye bajo la licencia MIT. Consulta `LICENSE`.
 
 ## Autor
 

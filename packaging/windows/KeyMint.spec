@@ -2,21 +2,21 @@
 
 from pathlib import Path
 
-# El archivo .spec está en:
-# PasswGen\packaging\windows\GenPasswords.spec
-#
-# Por eso subimos dos niveles para llegar a la raíz del proyecto.
 PROJECT_ROOT = Path(SPECPATH).resolve().parents[1]
-SRC_DIR = PROJECT_ROOT / "src"
+
+ENTRY_POINT = PROJECT_ROOT / "KeyMint.py"
+BRANDING_DIR = PROJECT_ROOT / "assets" / "branding"
+ICONS_DIR = PROJECT_ROOT / "assets" / "icons"
 
 a = Analysis(
-    [str(SRC_DIR / "GenPasswords.py")],
-    pathex=[str(SRC_DIR)],
+    [str(ENTRY_POINT)],
+    pathex=[str(PROJECT_ROOT)],
     binaries=[],
     datas=[
-        (str(SRC_DIR / "Logo.ico"), "."),
-        (str(SRC_DIR / "ver.png"), "."),
-        (str(SRC_DIR / "ojo.png"), "."),
+        (str(BRANDING_DIR / "KeyMintIcon.ico"), "assets/branding"),
+        (str(BRANDING_DIR / "KeyMintIcon.png"), "assets/branding"),
+        (str(ICONS_DIR / "eye-open.png"), "assets/icons"),
+        (str(ICONS_DIR / "eye-closed.png"), "assets/icons"),
     ],
     hiddenimports=[],
     hookspath=[],
@@ -35,7 +35,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name="GenPasswords",
+    name="KeyMint",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -48,5 +48,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=str(SRC_DIR / "Logo.ico"),
+    icon=str(BRANDING_DIR / "KeyMintIcon.ico"),
 )
