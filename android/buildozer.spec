@@ -14,7 +14,7 @@ requirements = python3,kivy
 orientation = portrait
 fullscreen = 0
 
-icon.filename = ../assets/branding/KeyMintIcon.png
+icon.filename = %(source.dir)s/assets/KeyMintIcon.png
 
 android.api = 36
 android.minapi = 23
