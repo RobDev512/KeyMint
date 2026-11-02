@@ -43,7 +43,7 @@ El APK aparecerá dentro de `android/bin/`.
 
 El workflow `.github/workflows/android-preview.yml` genera un APK `debug` para `arm64-v8a` mediante Buildozer/python-for-android.
 
-La compilación validada para este cierre fue generada con:
+La compilación final de cierre fue generada desde `main` en el commit `5b797c09667b3824fa2903bd33356ccb394862a5` mediante Build Android Preview #4, con:
 
 - versión de aplicación: `1.1.0`;
 - Android API: `36`;
@@ -51,16 +51,16 @@ La compilación validada para este cierre fue generada con:
 - Android NDK: `29`;
 - arquitectura: `arm64-v8a`.
 
-Artefacto validado:
+Artefacto final:
 
 ```text
 keymint-1.1.0-arm64-v8a-debug.apk
 ```
 
-SHA-256:
+SHA-256 del APK final de `main`:
 
 ```text
-C022FA11045E30B3BA7F2944871B88F1A14999B90A5AC91ECABDB4AB97575B98
+660BA1ACB6547DDDCB8B96CE5BB7F2A2BED3904B0E89B839F9051A7A808B0473
 ```
 
 ## Estado de validación
