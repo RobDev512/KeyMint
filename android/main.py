@@ -7,6 +7,7 @@ from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
 from kivy.core.window import Window
 from kivy.metrics import dp, sp
+from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -63,13 +64,29 @@ class KeyMintButton(Button):
             self.color = theme["text"]
 
 
-class IconButton(ButtonBehavior, Image):
-    def __init__(self, **kwargs):
+class IconButton(ButtonBehavior, AnchorLayout):
+    def __init__(self, icon_size=34, **kwargs):
         super().__init__(**kwargs)
+        self.anchor_x = "center"
+        self.anchor_y = "center"
         self.size_hint_y = None
-        self.height = dp(46)
-        self.fit_mode = "contain"
-        self.mipmap = True
+        self.height = dp(48)
+
+        self._icon = Image(
+            size_hint=(None, None),
+            size=(dp(icon_size), dp(icon_size)),
+            fit_mode="contain",
+            mipmap=True,
+        )
+        self.add_widget(self._icon)
+
+    @property
+    def source(self):
+        return self._icon.source
+
+    @source.setter
+    def source(self, value):
+        self._icon.source = value
 
     def on_state(self, *_):
         self.opacity = 0.58 if self.state == "down" else 1
@@ -123,6 +140,7 @@ class KeyMintAndroid(App):
         brand.add_widget(self.version_label)
 
         self.theme_button = IconButton(
+            icon_size=36,
             size_hint_x=None,
             width=dp(52),
         )
@@ -192,11 +210,11 @@ class KeyMintAndroid(App):
         )
         self.panel.add_widget(self.password_input)
 
-        actions = BoxLayout(size_hint_y=None, height=dp(46), spacing=dp(18))
+        actions = BoxLayout(size_hint_y=None, height=dp(48), spacing=dp(18))
 
-        self.visibility_button = IconButton()
-        self.copy_button = IconButton()
-        self.clear_button = IconButton()
+        self.visibility_button = IconButton(icon_size=34)
+        self.copy_button = IconButton(icon_size=34)
+        self.clear_button = IconButton(icon_size=34)
 
         self.visibility_button.bind(
             on_release=lambda *_: self.toggle_visibility()
