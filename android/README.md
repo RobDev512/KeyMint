@@ -14,6 +14,20 @@ La interfaz Android se implementa con Kivy porque CustomTkinter/Tkinter no es un
 - limpiar;
 - tema claro/oscuro.
 
+## Preparar branding
+
+Antes de compilar, desde la raíz del proyecto ejecuta:
+
+```powershell
+& ".\.venv\Scripts\python.exe" ".\android\prepare_assets.py"
+```
+
+Eso genera:
+
+`android/assets/KeyMintIcon.png`
+
+a partir del branding oficial y lo normaliza a un lienzo PNG de 512×512 para Buildozer.
+
 ## Compilación en Windows
 
 Buildozer requiere Linux/macOS. En Windows se utiliza WSL2.
