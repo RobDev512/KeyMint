@@ -1,0 +1,102 @@
+name: Build Android Preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/android-preview
+    paths:
+      - "android/**"
+      - "assets/branding/KeyMintIcon.png"
+      - "assets/icons/**"
+      - ".github/workflows/android-preview.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build-debug-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Linux build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ant \
+            autoconf \
+            automake \
+            autopoint \
+            ccache \
+            cmake \
+            g++ \
+            gcc \
+            gettext \
+            git \
+            lbzip2 \
+            libffi-dev \
+            libltdl-dev \
+            libssl-dev \
+            libtool \
+            make \
+            patch \
+            pkg-config \
+            unzip \
+            wget \
+            zip
+
+      - name: Ensure Rust toolchain
+        shell: bash
+        run: |
+          if ! command -v rustc >/dev/null 2>&1; then
+            curl https://sh.rustup.rs -sSf | sh -s -- -y
+          fi
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+
+      - name: Install Buildozer toolchain
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install \
+            git+https://github.com/kivy/buildozer.git \
+            legacy-cgi \
+            setuptools \
+            "cython==0.29.34" \
+            pillow \
+            virtualenv
+
+      - name: Prepare Android assets
+        run: |
+          python android/prepare_assets.py
+
+      - name: Build debug APK
+        working-directory: android
+        run: |
+          buildozer -v android debug
+
+      - name: Show generated artifacts
+        if: always()
+        run: |
+          find android/bin -maxdepth 1 -type f -print 2>/dev/null || true
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: KeyMint-Android-Preview-v1.1.0
+          path: android/bin/*.apk
+          if-no-files-found: error
+          retention-days: 14
