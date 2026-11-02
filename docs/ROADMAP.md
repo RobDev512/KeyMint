@@ -6,11 +6,11 @@
 **Última versión pública estable:** KeyMint v1.1.0
 **Estado general:** Publicada y cerrada para Windows
 **Plataforma principal:** Windows 64-bit
-**Android:** Preview funcional validada en dispositivo físico; sin release estable firmada
+**Android:** Preview Kivy funcional validada; port oficial nativo planificado para una etapa futura
 
 > KeyMint es la continuación directa de PasswGen.
 > La versión v1.0.0 permanece como referencia histórica de la identidad anterior.
-> La Preview Android v1.1.0 es una línea experimental mantenida por separado de la distribución estable de Windows.
+> La Android Preview de v1.1.0 se conserva como prueba técnica y referencia funcional. No se planea convertir directamente esa implementación Kivy en el port Android oficial.
 
 ---
 
@@ -46,7 +46,7 @@ Primera versión formal y pública del proyecto.
 
 ## v1.1.0 — Transición a KeyMint
 
-**Estado:** Publicada y cerrada para Windows
+**Estado:** Publicada y cerrada para Windows; Android incluida como Preview experimental
 
 Primera versión bajo la nueva identidad **KeyMint**.
 
@@ -121,7 +121,7 @@ Esta versión prioriza identidad, estructura, empaquetado y renovación visual. 
 
 ### Android Preview complementaria
 
-Esta línea se desarrolló después de publicar la release estable de Windows y no modifica retroactivamente el tag `v1.1.0`.
+Esta línea se desarrolló después de publicar inicialmente la distribución estable de Windows. El APK se conserva como Preview experimental dentro de la release v1.1.0 y como referencia para el futuro diseño móvil.
 
 - [x] Crear una implementación móvil nueva basada en Kivy.
 - [x] Adaptar la interfaz principal a controles táctiles.
@@ -132,9 +132,10 @@ Esta línea se desarrolló después de publicar la release estable de Windows y 
 - [x] Obtener una compilación CI correcta para `arm64-v8a`.
 - [x] Probar manualmente la Preview en un dispositivo Android físico.
 - [x] Validar instalación, apertura y flujo principal de generación.
-- [ ] Generar una compilación Android de release firmada.
-- [ ] Validar una matriz más amplia de versiones de Android, dispositivos y resoluciones.
-- [ ] Declarar soporte Android estable general.
+- [x] Publicar el APK como asset complementario de la release v1.1.0.
+- [x] Cerrar la implementación Kivy como Preview técnica, sin promoverla a port Android oficial.
+
+> El futuro port Android oficial será una implementación nativa nueva. No se plantea migrar progresivamente el código Kivy hasta convertirlo en la aplicación Android estable.
 
 ---
 
@@ -201,7 +202,7 @@ Ampliación del control sobre las contraseñas generadas.
 
 ---
 
-## v1.5.0 — Portabilidad
+## v1.5.0 — Portabilidad y preparación multiplataforma
 
 **Estado:** Pendiente
 
@@ -212,16 +213,17 @@ Ampliación del control sobre las contraseñas generadas.
 - Separar comportamiento específico por plataforma.
 - Revisar empaquetado para cada sistema.
 
-### Móvil
+### Preparación móvil
 
-La Preview Android creada durante el cierre de v1.1.0 sirve como base experimental, pero el soporte oficial continúa pendiente.
+La Preview Kivy de v1.1.0 sirve únicamente como referencia funcional. En esta etapa se preparará el proyecto para que un futuro cliente Android nativo pueda reproducir el comportamiento de KeyMint sin duplicar reglas ambiguas ni depender de la interfaz de Windows.
 
-- Evolucionar la Preview Android hacia una implementación mantenida de release.
-- Definir firma, versionado y distribución formal para Android.
-- Validar compatibilidad en múltiples dispositivos, resoluciones y versiones del sistema.
-- Revisar accesibilidad y comportamiento táctil a mayor escala.
-- Evaluar generación de AAB si se adopta distribución mediante tienda.
-- No declarar soporte Android estable hasta completar las validaciones anteriores.
+- Documentar de forma explícita las reglas del generador y sus casos límite.
+- Separar conceptualmente lógica de generación, interfaz, almacenamiento y comportamiento específico de plataforma.
+- Definir contratos funcionales y casos de prueba reutilizables entre implementaciones.
+- Definir qué preferencias pueden compartirse entre plataformas y cuáles deben ser específicas del sistema.
+- Documentar el comportamiento esperado de portapapeles, bloqueo, temas, accesibilidad y ciclo de vida en móvil.
+- No iniciar todavía una migración del código Kivy a producción.
+- Revisar el momento adecuado para comenzar el port Android oficial según la estabilidad de la arquitectura de v2.0.
 
 ---
 
@@ -238,6 +240,8 @@ La evolución de KeyMint de generador de contraseñas a **gestor local de creden
 - Motor de políticas de generación.
 - Presets avanzados.
 - Pruebas automatizadas del motor.
+- Definir comportamiento y contratos suficientemente claros para permitir clientes nativos en otras plataformas.
+- Evitar acoplar el formato del vault a una interfaz o toolkit específico.
 - Posible sistema de actualización integrado.
 - Evolución multiplataforma si el proyecto lo justifica.
 
@@ -291,6 +295,54 @@ La evolución de KeyMint de generador de contraseñas a **gestor local de creden
 
 ---
 
+## Objetivo futuro — Port Android oficial nativo
+
+**Estado:** Planificado para la etapa v2.x; versión exacta por definir
+
+El port Android oficial se iniciará cuando las reglas del generador y la arquitectura de datos/seguridad de KeyMint sean suficientemente estables. Puede comenzar durante la estabilización final de v2.0 o después de ella; no se fija todavía un número de versión para evitar duplicar trabajo mientras cambian los fundamentos del proyecto.
+
+### Tecnología prevista
+
+- Crear un proyecto Android nuevo mediante **Android Studio**.
+- Utilizar **Kotlin** como lenguaje principal.
+- Utilizar **Jetpack Compose** para la interfaz nativa.
+- Tratar la aplicación Android como cliente nativo de KeyMint, no como empaquetado de la aplicación Python de Windows.
+- No reutilizar Kivy como base de producción; conservar la Preview v1.1.0 únicamente como referencia funcional y visual.
+
+### Arquitectura y paridad funcional
+
+- Reimplementar de forma nativa las reglas del generador definidas por KeyMint.
+- Mantener paridad funcional documentada con las capacidades estables del proyecto cuando sea razonable.
+- Diseñar navegación, ciclo de vida, estados de interfaz y accesibilidad específicamente para Android.
+- Evitar copiar literalmente la disposición de escritorio cuando una interacción móvil requiera otra solución.
+- Compartir especificaciones, formatos y casos de prueba cuando sea posible, aunque Windows y Android utilicen tecnologías distintas.
+
+### Seguridad móvil
+
+- Diseñar el almacenamiento Android específicamente para el modelo de seguridad del Vault.
+- Evaluar Android Keystore para protección de material criptográfico cuando corresponda.
+- Integrar biometría únicamente como mecanismo complementario y bajo un diseño de seguridad explícito.
+- Definir política de bloqueo al pasar a segundo plano o después de inactividad.
+- Minimizar permanencia de secretos en portapapeles y memoria.
+- Evaluar protección frente a capturas o vistas recientes en pantallas sensibles cuando el modelo de amenazas lo justifique.
+
+### Distribución y calidad
+
+- Crear una compilación `release` firmada con una clave de producción persistente y protegida.
+- Definir versionado Android coherente con las releases de KeyMint.
+- Crear CI para compilaciones y pruebas del proyecto Android nativo.
+- Validar múltiples versiones de Android, resoluciones y clases de dispositivo.
+- Probar accesibilidad, rotación/cambios de configuración y comportamiento en segundo plano.
+- Evaluar AAB y distribución mediante Google Play si se decide publicar en tienda.
+- Mantener APK u otro canal de distribución directa solo si existe una estrategia clara de firma y actualización.
+- No declarar Android como plataforma estable hasta completar pruebas, firma y criterios de soporte definidos.
+
+### Criterio de inicio
+
+El port oficial no debe comenzar solo porque la Preview Kivy funcione. Debe comenzar cuando implementar una función en Android ya no obligue a perseguir continuamente cambios estructurales del proyecto principal.
+
+---
+
 ## Ideas posteriores al vault
 
 **Estado:** Exploración
@@ -315,9 +367,10 @@ Estas ideas no sustituyen las etapas anteriores y pueden cambiar después de val
 - Utilizar APIs apropiadas para generación segura.
 - Mantener clara la diferencia entre generador y gestor de contraseñas hasta que el vault exista realmente.
 - No declarar soporte para plataformas no probadas.
+- El port Android oficial será nativo y se diseñará para Android; la Preview Kivy no se tratará como base de producción.
 - Mantener una identidad visual consistente dentro del ecosistema RobDev512.
 - No sacrificar seguridad por comodidad de interfaz.
-- Tratar QR, sincronización, importación y exportación como superficies de seguridad, no solo como funciones de UX.
+- Tratar QR, sincronización, importación, exportación y clientes móviles como superficies de seguridad, no solo como funciones de UX.
 
 ---
 
