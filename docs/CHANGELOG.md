@@ -6,7 +6,13 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 
 ## [Unreleased]
 
-### Android Preview posterior a v1.1.0
+Sin cambios funcionales pendientes documentados después del cierre de v1.1.0.
+
+---
+
+## [1.1.0] — 2026-11-01
+
+### Android Preview añadida posteriormente
 
 - Incorporación de una implementación móvil separada basada en Kivy, manteniendo intacta la aplicación de escritorio.
 - Preparación automática de branding e iconos para el empaquetado Android.
@@ -15,15 +21,11 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 - Configuración Android validada con API 36, min API 24, NDK 29 y arquitectura `arm64-v8a`.
 - Corrección de `android.minapi` de 23 a 24 para permitir la compilación de Python 3.14 con las APIs nativas requeridas.
 - Build Android Preview final completado correctamente desde `main` en el commit `5b797c09667b3824fa2903bd33356ccb394862a5`.
-- APK final de Preview: `keymint-1.1.0-arm64-v8a-debug.apk`.
-- SHA-256 del APK final de `main`: `660BA1ACB6547DDDCB8B96CE5BB7F2A2BED3904B0E89B839F9051A7A808B0473`.
+- APK final distribuido como asset complementario de la misma release `v1.1.0`: `KeyMint_Android_Preview_v1.1.0_debug.apk`.
+- SHA-256 del APK final: `660BA1ACB6547DDDCB8B96CE5BB7F2A2BED3904B0E89B839F9051A7A808B0473`.
 - Prueba manual satisfactoria en un dispositivo Android físico el 2 de noviembre de 2026 para el flujo principal: instalación, apertura, generación, mostrar/ocultar, copiar, limpiar, tema y longitud máxima de 64 caracteres.
-- La implementación Android continúa clasificada como **Preview**: el APK es `debug`, no constituye una release Android estable firmada y todavía no cuenta con una matriz amplia de pruebas por dispositivo/resolución/versión de Android.
-- La release estable `v1.1.0` publicada permanece enfocada en Windows de 64 bits y no se reescribe retroactivamente.
-
----
-
-## [1.1.0] — 2026-11-01
+- La implementación Android continúa clasificada como **Preview**: el APK es `debug`, no constituye una distribución Android estable firmada y todavía no cuenta con una matriz amplia de pruebas por dispositivo/resolución/versión de Android.
+- El APK Android fue incorporado después de la publicación inicial de Windows. El tag `v1.1.0` se conserva sin reescribir y sigue representando el estado original de la release de Windows; el APK se adjunta como asset complementario en la misma página de release.
 
 ### Identidad
 
