@@ -1,18 +1,24 @@
 import secrets
 import string
+from pathlib import Path
 
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.core.clipboard import Clipboard
 from kivy.core.window import Window
 from kivy.metrics import dp, sp
+from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
+from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.slider import Slider
 from kivy.uix.textinput import TextInput
 
 APP_VERSION = "1.1.0"
+
+ANDROID_ROOT = Path(__file__).resolve().parent
+ASSET_ROOT = ANDROID_ROOT / "assets"
 
 MINT = (0.208, 0.839, 0.682, 1)
 DARK = {
@@ -33,6 +39,10 @@ LIGHT = {
 }
 
 
+def asset_path(*parts):
+    return str(ASSET_ROOT.joinpath(*parts))
+
+
 class KeyMintButton(Button):
     def __init__(self, primary=False, **kwargs):
         super().__init__(**kwargs)
@@ -51,6 +61,18 @@ class KeyMintButton(Button):
         else:
             self.background_color = theme["surface2"]
             self.color = theme["text"]
+
+
+class IconButton(ButtonBehavior, Image):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.size_hint_y = None
+        self.height = dp(46)
+        self.fit_mode = "contain"
+        self.mipmap = True
+
+    def on_state(self, *_):
+        self.opacity = 0.58 if self.state == "down" else 1
 
 
 class KeyMintAndroid(App):
@@ -100,10 +122,9 @@ class KeyMintAndroid(App):
         brand.add_widget(self.title_label)
         brand.add_widget(self.version_label)
 
-        self.theme_button = KeyMintButton(
-            text="Claro",
+        self.theme_button = IconButton(
             size_hint_x=None,
-            width=dp(72),
+            width=dp(52),
         )
         self.theme_button.bind(on_release=lambda *_: self.toggle_theme())
 
@@ -171,10 +192,11 @@ class KeyMintAndroid(App):
         )
         self.panel.add_widget(self.password_input)
 
-        actions = BoxLayout(size_hint_y=None, height=dp(46), spacing=dp(8))
-        self.visibility_button = KeyMintButton(text="Mostrar")
-        self.copy_button = KeyMintButton(text="Copiar")
-        self.clear_button = KeyMintButton(text="Limpiar")
+        actions = BoxLayout(size_hint_y=None, height=dp(46), spacing=dp(18))
+
+        self.visibility_button = IconButton()
+        self.copy_button = IconButton()
+        self.clear_button = IconButton()
 
         self.visibility_button.bind(
             on_release=lambda *_: self.toggle_visibility()
@@ -217,6 +239,36 @@ class KeyMintAndroid(App):
         )
         self.root_box.add_widget(self.footer_label)
 
+    def _refresh_icons(self):
+        palette = "Oscuro" if self.dark_mode else "Claro"
+        visibility_state = "Abierto" if self.password_visible else "Cerrado"
+
+        self.theme_button.source = asset_path(
+            "icons",
+            "theme",
+            "IconoClaro.png" if self.dark_mode else "IconoOscuro.png",
+        )
+
+        self.visibility_button.source = asset_path(
+            "icons",
+            "visibility",
+            f"Ver{visibility_state}_{palette}.png",
+        )
+
+        self.copy_button.source = asset_path(
+            "icons",
+            "ui",
+            palette,
+            "Copiar.png",
+        )
+
+        self.clear_button.source = asset_path(
+            "icons",
+            "ui",
+            palette,
+            "Cerrar.png",
+        )
+
     def generate_password(self):
         characters = (
             string.ascii_letters
@@ -230,7 +282,7 @@ class KeyMintAndroid(App):
         self.password_visible = False
         self.password_input.password = True
         self.password_input.text = self.password
-        self.visibility_button.text = "Mostrar"
+        self._refresh_icons()
         self.copy_password(silent=True)
         self.show_status("Contraseña generada y copiada.")
 
@@ -261,7 +313,7 @@ class KeyMintAndroid(App):
         self.password_visible = False
         self.password_input.text = ""
         self.password_input.password = True
-        self.visibility_button.text = "Mostrar"
+        self._refresh_icons()
         self.show_status("Contraseña eliminada de la vista.")
 
     def toggle_visibility(self):
@@ -274,9 +326,7 @@ class KeyMintAndroid(App):
 
         self.password_visible = not self.password_visible
         self.password_input.password = not self.password_visible
-        self.visibility_button.text = (
-            "Ocultar" if self.password_visible else "Mostrar"
-        )
+        self._refresh_icons()
 
     def toggle_theme(self):
         self.dark_mode = not self.dark_mode
@@ -304,16 +354,8 @@ class KeyMintAndroid(App):
         self.length_label.color = theme["muted"]
         self.status_label.color = theme["muted"]
         self.footer_label.color = theme["muted"]
-        self.theme_button.text = "Claro" if self.dark_mode else "Oscuro"
-
-        for button in (
-            self.theme_button,
-            self.visibility_button,
-            self.copy_button,
-            self.clear_button,
-            self.generate_button,
-        ):
-            button.apply_theme(theme)
+        self.generate_button.apply_theme(theme)
+        self._refresh_icons()
 
     def show_status(self, text, error=False):
         self.status_label.text = text
