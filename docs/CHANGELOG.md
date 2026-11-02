@@ -14,9 +14,9 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 - Incorporación de un workflow reproducible de GitHub Actions para generar el APK de Preview.
 - Configuración Android validada con API 36, min API 24, NDK 29 y arquitectura `arm64-v8a`.
 - Corrección de `android.minapi` de 23 a 24 para permitir la compilación de Python 3.14 con las APIs nativas requeridas.
-- Build Android Preview completado correctamente mediante GitHub Actions.
-- APK de prueba: `keymint-1.1.0-arm64-v8a-debug.apk`.
-- SHA-256 del APK validado: `C022FA11045E30B3BA7F2944871B88F1A14999B90A5AC91ECABDB4AB97575B98`.
+- Build Android Preview final completado correctamente desde `main` en el commit `5b797c09667b3824fa2903bd33356ccb394862a5`.
+- APK final de Preview: `keymint-1.1.0-arm64-v8a-debug.apk`.
+- SHA-256 del APK final de `main`: `660BA1ACB6547DDDCB8B96CE5BB7F2A2BED3904B0E89B839F9051A7A808B0473`.
 - Prueba manual satisfactoria en un dispositivo Android físico el 2 de noviembre de 2026 para el flujo principal: instalación, apertura, generación, mostrar/ocultar, copiar, limpiar, tema y longitud máxima de 64 caracteres.
 - La implementación Android continúa clasificada como **Preview**: el APK es `debug`, no constituye una release Android estable firmada y todavía no cuenta con una matriz amplia de pruebas por dispositivo/resolución/versión de Android.
 - La release estable `v1.1.0` publicada permanece enfocada en Windows de 64 bits y no se reescribe retroactivamente.
