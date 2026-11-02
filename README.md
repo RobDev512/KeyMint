@@ -6,7 +6,7 @@ El proyecto nació como **PasswGen**. La versión **v1.0.0** fue su primera rele
 
 ## Versión actual
 
-**v1.1.0-dev**
+**v1.1.0**
 
 ## Estado
 
@@ -124,7 +124,7 @@ packaging\windows\KeyMint.iss
 Durante el desarrollo de v1.1.0 la salida prevista es:
 
 ```text
-dist\installer\KeyMint_Setup_v1.1.0-dev.exe
+dist\installer\KeyMint_Setup_v1.1.0.exe
 ```
 
 ## Estructura del proyecto

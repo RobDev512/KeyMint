@@ -8,16 +8,53 @@ ENTRY_POINT = PROJECT_ROOT / "KeyMint.py"
 BRANDING_DIR = PROJECT_ROOT / "assets" / "branding"
 ICONS_DIR = PROJECT_ROOT / "assets" / "icons"
 
+
+def collect_files(source_dir, destination_root):
+    """Collect every file recursively preserving its relative structure."""
+    collected = []
+
+    for file_path in source_dir.rglob("*"):
+        if not file_path.is_file():
+            continue
+
+        relative_parent = file_path.parent.relative_to(source_dir)
+
+        if str(relative_parent) == ".":
+            destination = destination_root
+        else:
+            destination = str(
+                Path(destination_root)
+                / relative_parent
+            )
+
+        collected.append(
+            (
+                str(file_path),
+                destination,
+            )
+        )
+
+    return collected
+
+
+datas = []
+
+datas += collect_files(
+    BRANDING_DIR,
+    "assets/branding",
+)
+
+datas += collect_files(
+    ICONS_DIR,
+    "assets/icons",
+)
+
+
 a = Analysis(
     [str(ENTRY_POINT)],
     pathex=[str(PROJECT_ROOT)],
     binaries=[],
-    datas=[
-        (str(BRANDING_DIR / "KeyMintIcon.ico"), "assets/branding"),
-        (str(BRANDING_DIR / "KeyMintIcon.png"), "assets/branding"),
-        (str(ICONS_DIR / "eye-open.png"), "assets/icons"),
-        (str(ICONS_DIR / "eye-closed.png"), "assets/icons"),
-    ],
+    datas=datas,
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -48,5 +85,8 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=str(BRANDING_DIR / "KeyMintIcon.ico"),
+    icon=str(
+        BRANDING_DIR
+        / "KeyMintIcon.ico"
+    ),
 )

@@ -2,10 +2,10 @@
 
 ## Estado actual
 
-**Versión en desarrollo:** v1.1.0-dev  
-**Última versión pública:** PasswGen v1.0.0  
-**Estado general:** En desarrollo  
-**Plataforma principal:** Windows 64-bit  
+**Versión en desarrollo:** v1.1.0
+**Última versión pública:** PasswGen v1.0.0
+**Estado general:** Implementación de v1.1.0 terminada; pendiente cierre técnico y publicación
+**Plataforma principal:** Windows 64-bit
 **Android:** Sin soporte activo
 
 > KeyMint es la continuación directa de PasswGen.
@@ -45,11 +45,11 @@ Primera versión formal y pública del proyecto.
 
 ## v1.1.0 — Transición a KeyMint
 
-**Estado:** En desarrollo
+**Estado:** Implementación terminada; pendiente empaquetado final, pruebas y publicación
 
 Primera versión bajo la nueva identidad **KeyMint**.
 
-Esta versión prioriza identidad, estructura, empaquetado y renovación visual. El alcance funcional se mantendrá controlado para no mezclar demasiados cambios de seguridad y UX en una sola release.
+Esta versión prioriza identidad, estructura, empaquetado y renovación visual. El alcance funcional se mantiene controlado para no mezclar todavía el futuro gestor de credenciales con la base actual del generador.
 
 ### Identidad
 
@@ -57,7 +57,8 @@ Esta versión prioriza identidad, estructura, empaquetado y renovación visual. 
 - [x] Crear identidad visual propia.
 - [x] Crear conjunto oficial de recursos de branding.
 - [x] Documentar la identidad en `docs/BRANDING.md`.
-- [ ] Renombrar el repositorio remoto a `KeyMint`.
+- [x] Renombrar el repositorio remoto a `KeyMint`.
+- [x] Crear la página propia de KeyMint dentro del Hub de RobDev512.
 
 ### Estructura
 
@@ -65,35 +66,56 @@ Esta versión prioriza identidad, estructura, empaquetado y renovación visual. 
 - [x] Eliminar la antigua estructura `src/`.
 - [x] Crear `assets/branding/`.
 - [x] Crear `assets/icons/`.
+- [x] Separar iconos de tema, interfaz y visibilidad.
 - [x] Mover CHANGELOG y ROADMAP a `docs/`.
 - [x] Retirar el port Android experimental obsoleto.
 - [x] Crear `.venv` local de desarrollo.
+- [x] Incorporar `customtkinter` para la nueva interfaz.
 
 ### Empaquetado
 
 - [x] Renombrar configuración de PyInstaller a `KeyMint.spec`.
 - [x] Renombrar configuración de Inno Setup a `KeyMint.iss`.
 - [x] Generar `KeyMint.exe`.
-- [ ] Generar y probar `KeyMint_Setup_v1.1.0-dev.exe`.
-- [ ] Validar actualización desde la etapa histórica PasswGen cuando corresponda.
+- [x] Generar y probar `KeyMint_Setup_v1.1.0.exe`.
+- [x] Crear una identidad propia del instalador mediante `AppId=KeyMint_RobDev512`.
+- [x] Instalar KeyMint en `C:\Program Files\KeyMint`.
+- [x] Mantener PasswGen v1.0.0 como release histórica independiente.
+- [ ] Reconstruir ejecutable e instalador con la versión final de v1.1.0.
+- [ ] Realizar prueba final de instalación/desinstalación antes de publicar.
 
 ### Renovación de interfaz
 
-- [ ] Eliminar la barra de título estándar y crear una barra propia.
-- [ ] Añadir controles propios de minimizar, maximizar/restaurar y cerrar.
-- [ ] Redondear visualmente la ventana.
-- [ ] Redondear botones, campos, paneles y otros componentes.
-- [ ] Mejorar jerarquía visual, espaciado y distribución.
-- [ ] Unificar estados hover, focus, active y disabled.
-- [ ] Revisar tema claro y oscuro.
-- [ ] Revisar escalado DPI.
-- [ ] Mejorar navegación por teclado y accesibilidad.
+- [x] Eliminar la barra de título estándar y crear una barra propia.
+- [x] Añadir controles propios de tema, minimizar y cerrar.
+- [x] Mantener la ventana fija, sin redimensionamiento ni maximización.
+- [x] Centrar la aplicación al iniciar.
+- [x] Fijar un ancho de referencia de escritorio de **455 px**.
+- [x] Redondear la ventana mediante DWM nativo de Windows.
+- [x] Aplicar borde exterior mediante DWM nativo.
+- [x] Redondear visualmente botones, campos, paneles y otros componentes.
+- [x] Mejorar jerarquía visual, espaciado y distribución.
+- [x] Unificar estados hover, focus, active y disabled.
+- [x] Revisar tema claro y oscuro.
+- [x] Revisar escalado DPI.
+- [x] Mejorar navegación mediante teclado.
+- [x] Añadir control del slider mediante flechas.
+- [x] Añadir botón Limpiar.
+- [x] Permitir selección y copia del resultado sin permitir su edición.
+- [x] Añadir desplazamiento horizontal para contraseñas que no caben en el campo.
+- [x] Añadir barra horizontal compacta y centrada únicamente cuando existe desbordamiento.
+- [x] Mantener compatibilidad con desplazamiento horizontal mediante touchpad/rueda cuando Windows lo expone.
+
+> Mientras KeyMint conserve una ventana fija, maximizar/restaurar no forma parte del diseño de escritorio.
 
 ### Sistema de iconos
 
-- [ ] Crear iconos de interfaz con lenguaje visual consistente.
+- [x] Crear iconos de interfaz con lenguaje visual consistente.
+- [x] Separar recursos en carpetas propias de KeyMint.
+- [x] Añadir variantes de iconos para tema claro y oscuro.
+- [x] Corregir la semántica de mostrar/ocultar contraseña: ojo cerrado cuando está oculta y ojo abierto cuando está visible.
 - [ ] Utilizar SVG como fuente maestra para iconos simples cuando sea apropiado.
-- [ ] Mantener PNG/ICO derivados cuando la plataforma o Tkinter lo requiera.
+- [x] Mantener PNG/ICO derivados cuando la plataforma o Tkinter lo requiera.
 - [ ] Evaluar vectorización real del símbolo de KeyMint en el futuro.
 
 ---
@@ -138,6 +160,11 @@ Ampliación del control sobre las contraseñas generadas.
 - Atajos de teclado.
 - Mejoras de accesibilidad.
 - Mejor navegación mediante teclado.
+- Añadir **microanimaciones y transiciones** a la interfaz.
+- Animar cambios de estado, apertura/cierre de paneles y retroalimentación visual cuando sea útil.
+- Mantener las animaciones breves y opcionales para no perjudicar accesibilidad ni rendimiento.
+
+> En escritorio las animaciones no dependen de CSS; deberán implementarse con el toolkit de interfaz correspondiente.
 
 ---
 
@@ -173,20 +200,88 @@ Ampliación del control sobre las contraseñas generadas.
 - No reutilizar automáticamente el antiguo port Android experimental.
 - Definir arquitectura, interfaz y flujo adecuados para móvil.
 - No declarar soporte hasta contar con compilaciones probadas y mantenidas.
+- Adaptar la interfaz de KeyMint a tamaños y controles táctiles móviles.
 
 ---
 
-## v2.0.0 — Evolución mayor
+## v2.0.0 — Evolución mayor / Vault de KeyMint
 
 **Estado:** Visión
 
+La evolución de KeyMint de generador de contraseñas a **gestor local de credenciales** requiere una arquitectura y un modelo de seguridad propios. No se implementará como una simple ampliación del formulario actual.
+
+### Arquitectura
+
 - Arquitectura modular.
-- Separación clara entre motor de generación, interfaz y plataforma.
+- Separación clara entre motor de generación, interfaz, almacenamiento y plataforma.
 - Motor de políticas de generación.
 - Presets avanzados.
 - Pruebas automatizadas del motor.
 - Posible sistema de actualización integrado.
 - Evolución multiplataforma si el proyecto lo justifica.
+
+### Vault de credenciales
+
+- Crear un almacén local cifrado para cuentas y contraseñas.
+- Guardar nombre del servicio, usuario/correo, contraseña, URL y notas.
+- Buscar, consultar y editar credenciales.
+- Permitir cambiar una contraseña almacenada de manera controlada.
+- Añadir categorías, etiquetas o carpetas.
+- Mantener secretos cifrados en reposo.
+- Diseñar autenticación mediante contraseña maestra o mecanismo equivalente.
+- Bloqueo automático después de inactividad.
+- No almacenar la contraseña maestra en texto plano.
+- Evitar que credenciales sensibles permanezcan innecesariamente en memoria o portapapeles.
+
+### Notas seguras y códigos de recuperación
+
+- Crear notas cifradas dentro del vault.
+- Permitir almacenar códigos de recuperación separados de las contraseñas.
+- Permitir copiar códigos individuales.
+- Marcar códigos como utilizados cuando corresponda.
+- Diseñar una posible importación asistida desde notas existentes del usuario.
+- Evitar importaciones automáticas desde aplicaciones de terceros sin revisión explícita.
+
+### Copias y portabilidad de datos
+
+- Exportación cifrada del vault.
+- Importación segura de copias de KeyMint.
+- Estrategia de respaldo y restauración.
+- Definir formato versionado para evitar incompatibilidades futuras.
+
+### QR
+
+- Evaluar generación y lectura de códigos QR dentro de KeyMint.
+- Definir casos de uso concretos antes de permitir codificar secretos.
+- Posible uso para transferencia controlada entre dispositivos.
+- Posible uso para configuración/importación de datos compatibles.
+- Mostrar advertencias y confirmación antes de incluir credenciales sensibles en un QR.
+- No generar códigos QR de contraseñas o secretos automáticamente.
+
+### Seguridad antes de implementar el vault
+
+- Elegir una biblioteca criptográfica mantenida y ampliamente auditada.
+- Utilizar derivación de clave resistente para la contraseña maestra.
+- Utilizar cifrado autenticado.
+- Diseñar manejo de nonce/salt y versionado del formato.
+- Definir política de bloqueo y borrado de memoria cuando sea viable.
+- Crear pruebas específicas para cifrado, apertura, corrupción y migraciones.
+- Revisar el modelo de amenazas antes de considerar estable esta función.
+
+---
+
+## Ideas posteriores al vault
+
+**Estado:** Exploración
+
+Estas ideas no sustituyen las etapas anteriores y pueden cambiar después de validar el vault.
+
+- Sincronización opcional entre dispositivos, únicamente con diseño de cifrado de extremo a extremo.
+- Integración futura con autenticadores/TOTP si el alcance de KeyMint lo justifica.
+- Detección local de credenciales duplicadas o reutilizadas.
+- Auditoría local de salud del vault.
+- Acceso rápido a códigos de recuperación.
+- Integración opcional con biometría cuando la plataforma lo permita de forma segura.
 
 ---
 
@@ -194,11 +289,14 @@ Ampliación del control sobre las contraseñas generadas.
 
 - Generación local.
 - No enviar contraseñas a servicios externos.
-- No persistir credenciales por defecto.
+- No persistir credenciales por defecto mientras KeyMint sea únicamente generador.
+- Si se incorpora un vault, persistir secretos únicamente mediante almacenamiento cifrado diseñado específicamente para ello.
 - Utilizar APIs apropiadas para generación segura.
-- Mantener clara la diferencia entre generador y gestor de contraseñas.
+- Mantener clara la diferencia entre generador y gestor de contraseñas hasta que el vault exista realmente.
 - No declarar soporte para plataformas no probadas.
 - Mantener una identidad visual consistente dentro del ecosistema RobDev512.
+- No sacrificar seguridad por comodidad de interfaz.
+- Tratar QR, sincronización, importación y exportación como superficies de seguridad, no solo como funciones de UX.
 
 ---
 

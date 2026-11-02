@@ -6,7 +6,7 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 
 ## [Unreleased]
 
-### v1.1.0 — En desarrollo
+### v1.1.0 — Implementación terminada; pendiente publicación
 
 ### Identidad
 
@@ -21,6 +21,8 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
   - `KeyMintIcon.ico`
 - Creación de `docs/BRANDING.md`.
 - Definición de un estándar reutilizable de recursos de marca para proyectos RobDev512.
+- Renombrado del repositorio remoto a `RobDev512/KeyMint`.
+- Integración de KeyMint dentro del Hub de RobDev512 con página e identidad propias.
 
 ### Proyecto
 
@@ -28,6 +30,11 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 - Eliminación de la antigua carpeta `src/`.
 - Recursos de interfaz trasladados a `assets/icons/`.
 - Recursos de marca centralizados en `assets/branding/`.
+- Recursos de iconos reorganizados por función:
+  - `assets/icons/theme/`
+  - `assets/icons/ui/`
+  - `assets/icons/visibility/`
+- Eliminación de los antiguos `eye-open.png` y `eye-closed.png`.
 - `CHANGELOG.md` y `ROADMAP.md` trasladados a `docs/`.
 - Renombrado de:
   - `GenPasswords.spec` a `KeyMint.spec`.
@@ -36,32 +43,74 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 - Eliminación del antiguo `Logo.ico`.
 - Eliminación del port experimental Android basado en Kivy/Buildozer.
 - Creación de un entorno virtual local de desarrollo `.venv/`.
+- Incorporación de `customtkinter` como dependencia de interfaz.
 
 ### Interfaz
 
-- Actualización inicial de la interfaz al nombre KeyMint.
-- Aplicación de la nueva paleta mint/navy.
+- Renovación completa de la interfaz bajo la identidad KeyMint.
+- Aplicación de la paleta mint/navy.
 - Nuevo encabezado con símbolo y nombre KeyMint.
-- Conservación de temas claro y oscuro.
-- Preparación para una renovación visual mayor durante v1.1.0.
+- Barra de título propia.
+- Controles personalizados de tema, minimizar y cerrar.
+- Ventana fija y centrada.
+- Ancho de escritorio fijado en **455 px**.
+- Eliminación del redimensionamiento manual.
+- Temas claro y oscuro revisados.
+- Ventana redondeada mediante DWM nativo de Windows.
+- Borde exterior mediante `DWMWA_BORDER_COLOR`.
+- Sustitución de regiones manuales `SetWindowRgn` por el marco nativo DWM.
+- Mejora de jerarquía visual, espaciado y distribución.
+- Panel principal con superficie redondeada antialias.
+- Estados visuales para controles secundarios.
+- Botón **Limpiar** para retirar la contraseña mostrada.
+- Campo de contraseña no editable manualmente pero seleccionable.
+- Soporte para `Ctrl+A` y `Ctrl+C` sobre la contraseña generada.
+- Mostrar/ocultar contraseña con iconografía semánticamente correcta:
+  - ojo cerrado cuando la contraseña está oculta;
+  - ojo abierto cuando está visible.
+- Barra horizontal compacta y centrada para contraseñas que exceden el ancho visible.
+- Desplazamiento horizontal mediante la barra y gestos/eventos compatibles del sistema.
+- Revisión de escalado DPI.
+
+### Generación y controles
+
+- Longitud configurable entre 4 y 64 caracteres.
+- Slider rediseñado para mayor visibilidad.
+- Control del slider mediante teclado:
+  - `←` / `↓` reduce un carácter;
+  - `→` / `↑` aumenta un carácter.
+- El slider adquiere foco al interactuar con él.
+- Se conserva generación local mediante `secrets`.
+- Se conserva copiado al portapapeles.
+
+### Iconografía
+
+- Incorporación de iconos propios para tema claro/oscuro.
+- Incorporación de nuevos iconos de mostrar/ocultar.
+- Reorganización de iconos reutilizados en una carpeta propia de KeyMint.
+- Eliminación de nombres y rutas asociadas a otros proyectos.
+- Conservación de PNG/ICO donde Tkinter y Windows los requieren.
 
 ### Empaquetado
 
 - El ejecutable pasa a llamarse `KeyMint.exe`.
-- PyInstaller actualizado para utilizar la nueva estructura y los recursos de KeyMint.
-- Inno Setup actualizado para generar `KeyMint_Setup_v1.1.0-dev.exe`.
-- El instalador conserva una referencia histórica compatible con la etapa PasswGen cuando corresponde.
+- PyInstaller actualizado para utilizar la estructura y recursos de KeyMint.
+- Inno Setup actualizado para generar `KeyMint_Setup_v1.1.0.exe`.
+- El instalador utiliza una identidad propia mediante `AppId=KeyMint_RobDev512`.
+- Instalación probada en `C:\Program Files\KeyMint`.
+- PasswGen v1.0.0 permanece como release histórica independiente.
 
 ### Pendiente antes de publicar v1.1.0
 
-- Barra de título propia.
-- Ventana y controles visualmente redondeados.
-- Renovación general de la interfaz.
-- Sustitución de iconos simples de interfaz por recursos vectoriales cuando corresponda.
-- Revisión de escalado y accesibilidad.
-- Finalización del instalador.
-- Renombrado del repositorio remoto a KeyMint.
-- Pruebas completas del ejecutable e instalador.
+- Actualizar documentación final.
+- Reconstruir `KeyMint.exe` con el código definitivo.
+- Reconstruir el instalador con el ejecutable definitivo.
+- Probar el ejecutable empaquetado.
+- Probar instalación y desinstalación finales.
+- Revisar `git diff` y confirmar que solo se incluyen recursos necesarios.
+- Crear commit de cierre de v1.1.0.
+- Publicar los cambios en GitHub.
+- Preparar release pública de v1.1.0 cuando las pruebas finales sean satisfactorias.
 
 ---
 

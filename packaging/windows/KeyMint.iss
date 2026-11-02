@@ -4,7 +4,7 @@
 ; ============================================================
 
 #define MyAppName "KeyMint"
-#define MyAppVersion "1.1.0-dev"
+#define MyAppVersion "1.1.0"
 #define MyAppPublisher "RobDev512"
 #define MyAppExeName "KeyMint.exe"
 
@@ -23,7 +23,7 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 
 OutputDir=..\..\dist\installer
-OutputBaseFilename=KeyMint_Setup_v1.1.0-dev
+OutputBaseFilename=KeyMint_Setup_v1.1.0
 
 SetupIconFile=..\..\assets\branding\KeyMintIcon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
@@ -49,4 +49,3 @@ Name: "{autodesktop}\KeyMint"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktop
 [Run]
 
 Filename: "{app}\{#MyAppExeName}"; Description: "Ejecutar {#MyAppName}"; Flags: nowait postinstall skipifsilent
-
