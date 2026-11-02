@@ -6,7 +6,20 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 
 ## [Unreleased]
 
-Sin cambios documentados todavía.
+### Android Preview posterior a v1.1.0
+
+- Incorporación de una implementación móvil separada basada en Kivy, manteniendo intacta la aplicación de escritorio.
+- Preparación automática de branding e iconos para el empaquetado Android.
+- Incorporación de `android/buildozer.spec` y documentación específica en `android/README.md`.
+- Incorporación de un workflow reproducible de GitHub Actions para generar el APK de Preview.
+- Configuración Android validada con API 36, min API 24, NDK 29 y arquitectura `arm64-v8a`.
+- Corrección de `android.minapi` de 23 a 24 para permitir la compilación de Python 3.14 con las APIs nativas requeridas.
+- Build Android Preview completado correctamente mediante GitHub Actions.
+- APK de prueba: `keymint-1.1.0-arm64-v8a-debug.apk`.
+- SHA-256 del APK validado: `C022FA11045E30B3BA7F2944871B88F1A14999B90A5AC91ECABDB4AB97575B98`.
+- Prueba manual satisfactoria en un dispositivo Android físico el 2 de noviembre de 2026 para el flujo principal: instalación, apertura, generación, mostrar/ocultar, copiar, limpiar, tema y longitud máxima de 64 caracteres.
+- La implementación Android continúa clasificada como **Preview**: el APK es `debug`, no constituye una release Android estable firmada y todavía no cuenta con una matriz amplia de pruebas por dispositivo/resolución/versión de Android.
+- La release estable `v1.1.0` publicada permanece enfocada en Windows de 64 bits y no se reescribe retroactivamente.
 
 ---
 
@@ -45,7 +58,7 @@ Sin cambios documentados todavía.
   - `GenPasswords.iss` a `KeyMint.iss`.
 - Eliminación de `GenPasswords.py`.
 - Eliminación del antiguo `Logo.ico`.
-- Eliminación del port experimental Android basado en Kivy/Buildozer.
+- Eliminación del port experimental Android heredado de la etapa anterior.
 - Creación de un entorno virtual local de desarrollo `.venv/`.
 - Incorporación de `customtkinter` como dependencia de interfaz.
 
@@ -133,7 +146,7 @@ Primera versión pública estable y primera release formal del proyecto bajo el 
 - Apariencia clara y oscura.
 - Recursos gráficos propios.
 - Empaquetado mediante PyInstaller.
-- Instalador de Windows mediante Inno Setup.
+- Instalador para Windows de 64 bits mediante Inno Setup.
 - Instalación nativa en Windows de 64 bits.
 - Identificación interna mediante `APP_NAME` y `APP_VERSION`.
 - Documentación inicial.
