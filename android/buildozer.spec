@@ -17,7 +17,7 @@ fullscreen = 0
 icon.filename = %(source.dir)s/assets/KeyMintIcon.png
 
 android.api = 36
-android.minapi = 23
+android.minapi = 24
 android.ndk = 29
 android.archs = arm64-v8a
 android.accept_sdk_license = True
