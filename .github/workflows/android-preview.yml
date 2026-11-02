@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - feature/android-preview
+      - main
     paths:
       - "android/**"
       - "assets/branding/KeyMintIcon.png"
