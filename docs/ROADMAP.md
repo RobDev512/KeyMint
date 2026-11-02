@@ -2,9 +2,9 @@
 
 ## Estado actual
 
-**Versión en desarrollo:** v1.1.0
-**Última versión pública:** PasswGen v1.0.0
-**Estado general:** Implementación de v1.1.0 terminada; pendiente cierre técnico y publicación
+**Versión actual:** v1.1.0
+**Última versión pública:** KeyMint v1.1.0
+**Estado general:** Publicada
 **Plataforma principal:** Windows 64-bit
 **Android:** Sin soporte activo
 
@@ -45,7 +45,7 @@ Primera versión formal y pública del proyecto.
 
 ## v1.1.0 — Transición a KeyMint
 
-**Estado:** Implementación terminada; pendiente empaquetado final, pruebas y publicación
+**Estado:** Publicada
 
 Primera versión bajo la nueva identidad **KeyMint**.
 
@@ -81,8 +81,8 @@ Esta versión prioriza identidad, estructura, empaquetado y renovación visual. 
 - [x] Crear una identidad propia del instalador mediante `AppId=KeyMint_RobDev512`.
 - [x] Instalar KeyMint en `C:\Program Files\KeyMint`.
 - [x] Mantener PasswGen v1.0.0 como release histórica independiente.
-- [ ] Reconstruir ejecutable e instalador con la versión final de v1.1.0.
-- [ ] Realizar prueba final de instalación/desinstalación antes de publicar.
+- [x] Reconstruir ejecutable e instalador con la versión final de v1.1.0.
+- [x] Realizar prueba final de instalación/desinstalación antes de publicar.
 
 ### Renovación de interfaz
 

@@ -6,7 +6,11 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 
 ## [Unreleased]
 
-### v1.1.0 — Implementación terminada; pendiente publicación
+Sin cambios documentados todavía.
+
+---
+
+## [1.1.0] — 2026-11-01
 
 ### Identidad
 
@@ -100,17 +104,16 @@ Todos los cambios relevantes de KeyMint y de su etapa histórica como PasswGen s
 - Instalación probada en `C:\Program Files\KeyMint`.
 - PasswGen v1.0.0 permanece como release histórica independiente.
 
-### Pendiente antes de publicar v1.1.0
+### Verificación final
 
-- Actualizar documentación final.
-- Reconstruir `KeyMint.exe` con el código definitivo.
-- Reconstruir el instalador con el ejecutable definitivo.
-- Probar el ejecutable empaquetado.
-- Probar instalación y desinstalación finales.
-- Revisar `git diff` y confirmar que solo se incluyen recursos necesarios.
-- Crear commit de cierre de v1.1.0.
-- Publicar los cambios en GitHub.
-- Preparar release pública de v1.1.0 cuando las pruebas finales sean satisfactorias.
+- Documentación final actualizada.
+- `KeyMint.exe` reconstruido con el código definitivo.
+- `KeyMint_Setup_v1.1.0.exe` generado mediante Inno Setup 6.
+- Ejecutable empaquetado probado.
+- Instalación final probada correctamente en Windows.
+- Desinstalación final probada correctamente en Windows.
+- Cambios de Git revisados antes del cierre.
+- SHA-256 del instalador: `165EFE3B53FBF9DF051F21F09A1421C5328D2AEC32B6B2EFD1B2D556673D8D1B`.
 
 ---
 
