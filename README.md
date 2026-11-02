@@ -10,9 +10,9 @@ El proyecto nació como **PasswGen**. La versión **v1.0.0** fue su primera rele
 
 ## Estado
 
-**Publicada y cerrada para Windows de 64 bits.**
+**Publicada y cerrada. Windows de 64 bits estable + Android Preview arm64-v8a.**
 
-La última versión pública estable es **KeyMint v1.1.0**. El repositorio también contiene una implementación **Android Preview v1.1.0** basada en Kivy, compilada mediante GitHub Actions y validada manualmente en un dispositivo Android físico. Esa Preview sigue siendo una compilación `debug` y no se presenta como distribución Android estable firmada.
+La release pública **KeyMint v1.1.0** reúne el instalador estable para Windows y un APK **Android Preview v1.1.0** basado en Kivy, compilado mediante GitHub Actions y validado manualmente en un dispositivo Android físico. La versión Android sigue siendo una compilación `debug` y no se presenta como distribución Android estable firmada.
 
 ## Características actuales
 
@@ -38,11 +38,14 @@ La selección aleatoria utiliza el módulo `secrets` de Python.
 
 La versión v1.1.0 todavía no garantiza obligatoriamente al menos un carácter de cada categoría habilitada. Ese control forma parte de la evolución planificada del generador.
 
-## Release estable v1.1.0
+## Release v1.1.0
 
-La distribución estable de esta versión corresponde a **Windows de 64 bits**.
+La misma release pública reúne dos distribuciones con distinto nivel de soporte:
 
-Instalador:
+- **Windows 64-bit:** distribución estable.
+- **Android arm64-v8a:** Preview funcional en formato APK `debug`.
+
+Instalador de Windows:
 
 ```text
 KeyMint_Setup_v1.1.0.exe
@@ -54,6 +57,18 @@ SHA-256:
 165EFE3B53FBF9DF051F21F09A1421C5328D2AEC32B6B2EFD1B2D556673D8D1B
 ```
 
+APK Android Preview:
+
+```text
+KeyMint_Android_Preview_v1.1.0_debug.apk
+```
+
+SHA-256:
+
+```text
+660BA1ACB6547DDDCB8B96CE5BB7F2A2BED3904B0E89B839F9051A7A808B0473
+```
+
 Release:
 
 https://github.com/RobDev512/KeyMint/releases/tag/v1.1.0
@@ -62,19 +77,21 @@ https://github.com/RobDev512/KeyMint/releases/tag/v1.1.0
 
 La carpeta `android/` contiene una implementación móvil separada de la interfaz de escritorio. Utiliza Kivy porque CustomTkinter/Tkinter no constituye una interfaz Android.
 
-La compilación de cierre validada fue:
+La compilación final incorporada como asset complementario de la release v1.1.0 fue:
 
 ```text
-keymint-1.1.0-arm64-v8a-debug.apk
+KeyMint_Android_Preview_v1.1.0_debug.apk
 ```
 
 SHA-256:
 
 ```text
-C022FA11045E30B3BA7F2944871B88F1A14999B90A5AC91ECABDB4AB97575B98
+660BA1ACB6547DDDCB8B96CE5BB7F2A2BED3904B0E89B839F9051A7A808B0473
 ```
 
-La Preview fue instalada y probada manualmente en un dispositivo físico el **2 de noviembre de 2026**. La validación del flujo principal fue satisfactoria. No se considera todavía soporte Android estable general porque el APK es `debug`, no está firmado como release pública y no se ha validado en una matriz amplia de dispositivos y versiones de Android.
+La Preview fue instalada y probada manualmente en un dispositivo físico el **2 de noviembre de 2026**. La validación del flujo principal fue satisfactoria. No se considera todavía soporte Android estable general porque el APK es `debug`, no está firmado con una clave persistente de producción y no se ha validado en una matriz amplia de dispositivos y versiones de Android.
+
+El APK Android se desarrolló y compiló después de la publicación inicial de Windows. El tag `v1.1.0` se conserva sin reescribir; el APK final de Preview fue generado desde el commit `5b797c09667b3824fa2903bd33356ccb394862a5` y se distribuye como asset complementario de la misma release.
 
 Consulta `android/README.md` para detalles de compilación y validación.
 
