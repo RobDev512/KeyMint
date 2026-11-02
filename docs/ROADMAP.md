@@ -3,13 +3,14 @@
 ## Estado actual
 
 **Versión actual:** v1.1.0
-**Última versión pública:** KeyMint v1.1.0
-**Estado general:** Publicada
+**Última versión pública estable:** KeyMint v1.1.0
+**Estado general:** Publicada y cerrada para Windows
 **Plataforma principal:** Windows 64-bit
-**Android:** Sin soporte activo
+**Android:** Preview funcional validada en dispositivo físico; sin release estable firmada
 
 > KeyMint es la continuación directa de PasswGen.
 > La versión v1.0.0 permanece como referencia histórica de la identidad anterior.
+> La Preview Android v1.1.0 es una línea experimental mantenida por separado de la distribución estable de Windows.
 
 ---
 
@@ -45,7 +46,7 @@ Primera versión formal y pública del proyecto.
 
 ## v1.1.0 — Transición a KeyMint
 
-**Estado:** Publicada
+**Estado:** Publicada y cerrada para Windows
 
 Primera versión bajo la nueva identidad **KeyMint**.
 
@@ -68,9 +69,9 @@ Esta versión prioriza identidad, estructura, empaquetado y renovación visual. 
 - [x] Crear `assets/icons/`.
 - [x] Separar iconos de tema, interfaz y visibilidad.
 - [x] Mover CHANGELOG y ROADMAP a `docs/`.
-- [x] Retirar el port Android experimental obsoleto.
+- [x] Retirar el port Android experimental obsoleto heredado de la etapa anterior.
 - [x] Crear `.venv` local de desarrollo.
-- [x] Incorporar `customtkinter` para la nueva interfaz.
+- [x] Incorporar `customtkinter` para la nueva interfaz de escritorio.
 
 ### Empaquetado
 
@@ -117,6 +118,23 @@ Esta versión prioriza identidad, estructura, empaquetado y renovación visual. 
 - [ ] Utilizar SVG como fuente maestra para iconos simples cuando sea apropiado.
 - [x] Mantener PNG/ICO derivados cuando la plataforma o Tkinter lo requiera.
 - [ ] Evaluar vectorización real del símbolo de KeyMint en el futuro.
+
+### Android Preview complementaria
+
+Esta línea se desarrolló después de publicar la release estable de Windows y no modifica retroactivamente el tag `v1.1.0`.
+
+- [x] Crear una implementación móvil nueva basada en Kivy.
+- [x] Adaptar la interfaz principal a controles táctiles.
+- [x] Reutilizar el branding oficial mediante preparación automática de assets.
+- [x] Añadir configuración reproducible con Buildozer/python-for-android.
+- [x] Añadir workflow de GitHub Actions para generar el APK de Preview.
+- [x] Resolver la incompatibilidad de min API 23 con Python 3.14 elevando `android.minapi` a 24.
+- [x] Obtener una compilación CI correcta para `arm64-v8a`.
+- [x] Probar manualmente la Preview en un dispositivo Android físico.
+- [x] Validar instalación, apertura y flujo principal de generación.
+- [ ] Generar una compilación Android de release firmada.
+- [ ] Validar una matriz más amplia de versiones de Android, dispositivos y resoluciones.
+- [ ] Declarar soporte Android estable general.
 
 ---
 
@@ -196,11 +214,14 @@ Ampliación del control sobre las contraseñas generadas.
 
 ### Móvil
 
-- Diseñar una implementación móvil nueva.
-- No reutilizar automáticamente el antiguo port Android experimental.
-- Definir arquitectura, interfaz y flujo adecuados para móvil.
-- No declarar soporte hasta contar con compilaciones probadas y mantenidas.
-- Adaptar la interfaz de KeyMint a tamaños y controles táctiles móviles.
+La Preview Android creada durante el cierre de v1.1.0 sirve como base experimental, pero el soporte oficial continúa pendiente.
+
+- Evolucionar la Preview Android hacia una implementación mantenida de release.
+- Definir firma, versionado y distribución formal para Android.
+- Validar compatibilidad en múltiples dispositivos, resoluciones y versiones del sistema.
+- Revisar accesibilidad y comportamiento táctil a mayor escala.
+- Evaluar generación de AAB si se adopta distribución mediante tienda.
+- No declarar soporte Android estable hasta completar las validaciones anteriores.
 
 ---
 
@@ -304,4 +325,4 @@ Estas ideas no sustituyen las etapas anteriores y pueden cambiar después de val
 
 El alcance de una versión puede cambiar si el desarrollo real lo requiere.
 
-Una función no se considera estable hasta haber sido probada en código fuente y, cuando corresponda, también dentro del ejecutable y del instalador.
+Una función no se considera estable hasta haber sido probada en código fuente y, cuando corresponda, también dentro del ejecutable, instalador o paquete correspondiente.

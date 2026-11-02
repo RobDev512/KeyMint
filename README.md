@@ -1,8 +1,8 @@
 # KeyMint
 
-**KeyMint** es un generador seguro de contraseñas de escritorio desarrollado en Python.
+**KeyMint** es un generador de contraseñas desarrollado en Python que prioriza la generación local y una interfaz propia.
 
-El proyecto nació como **PasswGen**. La versión **v1.0.0** fue su primera release pública estable; a partir del ciclo **v1.1.0** adopta oficialmente el nombre, identidad visual y estructura de **KeyMint**.
+El proyecto nació como **PasswGen**. La versión **v1.0.0** fue su primera release pública estable; a partir de **v1.1.0** adopta oficialmente el nombre, identidad visual y estructura de **KeyMint**.
 
 ## Versión actual
 
@@ -10,24 +10,25 @@ El proyecto nació como **PasswGen**. La versión **v1.0.0** fue su primera rele
 
 ## Estado
 
-**En desarrollo**
+**Publicada y cerrada para Windows de 64 bits.**
 
-La última versión pública estable continúa siendo **PasswGen v1.0.0** mientras se completa la transición a KeyMint.
+La última versión pública estable es **KeyMint v1.1.0**. El repositorio también contiene una implementación **Android Preview v1.1.0** basada en Kivy, compilada mediante GitHub Actions y validada manualmente en un dispositivo Android físico. Esa Preview sigue siendo una compilación `debug` y no se presenta como distribución Android estable firmada.
 
 ## Características actuales
 
 - Generación local de contraseñas.
-- Longitud configurable.
+- Longitud configurable entre 4 y 64 caracteres.
 - Selección aleatoria basada en `secrets`.
 - Letras, números y símbolos como conjunto de generación.
 - Mostrar u ocultar la contraseña generada.
 - Copiar la contraseña al portapapeles.
-- Interfaz gráfica de escritorio con Tkinter.
-- Detección del tema del sistema.
+- Limpiar el resultado mostrado.
 - Apariencia clara y oscura.
 - Identidad visual propia de KeyMint.
-- Ejecutable para Windows mediante PyInstaller.
+- Aplicación de escritorio para Windows con CustomTkinter/Tkinter.
+- Ejecutable mediante PyInstaller.
 - Instalador para Windows mediante Inno Setup.
+- Android Preview basada en Kivy con compilación reproducible mediante GitHub Actions.
 
 ## Seguridad
 
@@ -35,7 +36,47 @@ KeyMint genera las contraseñas localmente y no necesita enviar datos a servicio
 
 La selección aleatoria utiliza el módulo `secrets` de Python.
 
-La versión actual todavía no garantiza obligatoriamente al menos un carácter de cada categoría habilitada. Ese control forma parte de la evolución planificada del generador.
+La versión v1.1.0 todavía no garantiza obligatoriamente al menos un carácter de cada categoría habilitada. Ese control forma parte de la evolución planificada del generador.
+
+## Release estable v1.1.0
+
+La distribución estable de esta versión corresponde a **Windows de 64 bits**.
+
+Instalador:
+
+```text
+KeyMint_Setup_v1.1.0.exe
+```
+
+SHA-256:
+
+```text
+165EFE3B53FBF9DF051F21F09A1421C5328D2AEC32B6B2EFD1B2D556673D8D1B
+```
+
+Release:
+
+https://github.com/RobDev512/KeyMint/releases/tag/v1.1.0
+
+## Android Preview v1.1.0
+
+La carpeta `android/` contiene una implementación móvil separada de la interfaz de escritorio. Utiliza Kivy porque CustomTkinter/Tkinter no constituye una interfaz Android.
+
+La compilación de cierre validada fue:
+
+```text
+keymint-1.1.0-arm64-v8a-debug.apk
+```
+
+SHA-256:
+
+```text
+C022FA11045E30B3BA7F2944871B88F1A14999B90A5AC91ECABDB4AB97575B98
+```
+
+La Preview fue instalada y probada manualmente en un dispositivo físico el **2 de noviembre de 2026**. La validación del flujo principal fue satisfactoria. No se considera todavía soporte Android estable general porque el APK es `debug`, no está firmado como release pública y no se ha validado en una matriz amplia de dispositivos y versiones de Android.
+
+Consulta `android/README.md` para detalles de compilación y validación.
 
 ## Historial de identidad
 
@@ -43,15 +84,15 @@ La versión actual todavía no garantiza obligatoriamente al menos un carácter 
 
 PasswGen fue el nombre original del proyecto y corresponde a su primera versión pública estable.
 
-La release histórica continúa disponible en:
+La release histórica se conserva en:
 
-https://github.com/RobDev512/PasswGen/releases/tag/v1.0.0
+https://github.com/RobDev512/KeyMint/releases/tag/v1.0.0
 
 ### KeyMint v1.1.0+
 
 KeyMint es la identidad actual del proyecto.
 
-La transición incluye:
+La transición incluyó:
 
 - nuevo nombre;
 - nueva identidad visual;
@@ -59,15 +100,14 @@ La transición incluye:
 - nuevo ejecutable `KeyMint.exe`;
 - nuevo empaquetado;
 - renovación de la interfaz;
-- limpieza de componentes experimentales obsoletos.
+- preparación de una nueva Preview Android mantenida por separado de la interfaz de escritorio.
 
 ## Ejecutar desde el código fuente
 
-Requisitos:
+Requisitos de escritorio:
 
 - Python 3.11 o compatible.
-- Pillow.
-- pyperclip.
+- dependencias incluidas en `requirements.txt`.
 
 Crear un entorno virtual local:
 
@@ -113,44 +153,43 @@ Salida:
 dist\KeyMint.exe
 ```
 
-## Instalador
+## Instalador de Windows
 
-El instalador de Windows se define en:
+El instalador se define en:
 
 ```text
 packaging\windows\KeyMint.iss
 ```
 
-Durante el desarrollo de v1.1.0 la salida prevista es:
+La salida de v1.1.0 es:
 
 ```text
 dist\installer\KeyMint_Setup_v1.1.0.exe
 ```
 
-## Estructura del proyecto
+## Estructura principal
 
 ```text
 KeyMint/
+├── android/
+│   ├── buildozer.spec
+│   ├── main.py
+│   ├── prepare_assets.py
+│   └── README.md
 ├── assets/
 │   ├── branding/
-│   │   ├── KeyMintIcon.ico
-│   │   ├── KeyMintIcon.png
-│   │   ├── KeyMintLogo.png
-│   │   ├── KeyMintLogoHorizontal.png
-│   │   ├── KeyMintLogoTransparent.png
-│   │   └── KeyMintMono.png
 │   └── icons/
-│       ├── eye-closed.png
-│       └── eye-open.png
 ├── docs/
 │   ├── BRANDING.md
 │   ├── CHANGELOG.md
-│   ├── ROADMAP.md
-│   └── images/
+│   └── ROADMAP.md
 ├── packaging/
 │   └── windows/
 │       ├── KeyMint.iss
 │       └── KeyMint.spec
+├── .github/
+│   └── workflows/
+│       └── android-preview.yml
 ├── .gitignore
 ├── KeyMint.py
 ├── LICENSE
@@ -158,37 +197,20 @@ KeyMint/
 └── requirements.txt
 ```
 
-Las carpetas `.venv/`, `build/`, `dist/`, `Output/` y `__pycache__/` son artefactos locales y no forman parte del código fuente versionado.
+Las carpetas `.venv/`, `build/`, `dist/`, `releases/`, `Output/`, `android/bin/`, `android/.buildozer/` y otros artefactos generados son locales y no forman parte del código fuente versionado.
 
-## Identidad visual
+## Documentación
 
-La identidad de KeyMint se documenta en:
-
-```text
-docs/BRANDING.md
-```
-
-## Roadmap
-
-La planificación por versiones se encuentra en:
-
-```text
-docs/ROADMAP.md
-```
-
-## Historial de cambios
-
-El historial del proyecto se encuentra en:
-
-```text
-docs/CHANGELOG.md
-```
+- Identidad visual: `docs/BRANDING.md`
+- Historial de cambios: `docs/CHANGELOG.md`
+- Planificación: `docs/ROADMAP.md`
+- Android Preview: `android/README.md`
 
 ## Plataformas
 
-La distribución oficial continúa enfocada en **Windows de 64 bits**.
-
-El antiguo port experimental Android de PasswGen fue retirado durante la transición a KeyMint. El soporte móvil se retomará únicamente cuando exista una implementación mantenida y probada.
+- **Windows 64-bit:** soporte estable de v1.1.0.
+- **Android arm64-v8a:** Preview funcional validada manualmente; no release estable firmada.
+- **Linux/macOS:** sin distribución oficial en v1.1.0.
 
 ## Licencia
 

@@ -18,6 +18,7 @@ env/
 # Compilaciones y distribución
 build/
 dist/
+releases/
 *.exe
 *.msi
 *.msix
@@ -31,6 +32,7 @@ output/
 android/.buildozer/
 android/bin/
 android/.gradle/
+android/assets/
 *.apk
 *.aab
 
@@ -58,4 +60,3 @@ Desktop.ini
 .env
 .env.*
 !.env.example
-
